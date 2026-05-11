@@ -1,5 +1,5 @@
 package main
-import ("encoding/json";"fmt";"io";"os";"strconv";"strings")
+import ("encoding/json";"fmt";"io";"os";"strconv")
 func main() {
 	data, _ := io.ReadAll(os.Stdin)
 	var v any
@@ -12,8 +12,7 @@ func flatten(prefix string, v any, result map[string]any) {
 	switch tv := v.(type) {
 	case map[string]any:
 		for k, v2 := range tv {
-			p := k
-			if prefix != "" { p = prefix + "." + k }
+			p := k; if prefix != "" { p = prefix + "." + k }
 			flatten(p, v2, result)
 		}
 	case []any:
